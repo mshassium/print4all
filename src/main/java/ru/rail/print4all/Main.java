@@ -1,18 +1,22 @@
+package ru.rail.print4all;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.servlet.*;
-import java.net.URI;
-import java.net.URISyntaxException;
+
+import ru.rail.print4all.db.DBConnectionHelper;
+
 import java.sql.*;
 
 public class Main extends HttpServlet {
+
+  private DBConnectionHelper helper = new DBConnectionHelper();
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    if (req.getRequestURI().endsWith("/db")) {
+    if (req.getRequestURI().endsWith("/ru/rail/print4all/db")) {
       showDatabase(req,resp);
     } else {
       showHome(req,resp);
@@ -28,7 +32,7 @@ public class Main extends HttpServlet {
       throws ServletException, IOException {
     Connection connection = null;
     try {
-      connection = getConnection();
+      connection = helper.getConnection();
 
       Statement stmt = connection.createStatement();
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
@@ -48,25 +52,13 @@ public class Main extends HttpServlet {
     }
   }
 
-  private Connection getConnection() throws URISyntaxException, SQLException {
-    URI dbUri = new URI(System.getenv("DATABASE_URL"));
-
-    String username = dbUri.getUserInfo().split(":")[0];
-    String password = dbUri.getUserInfo().split(":")[1];
-    int port = dbUri.getPort();
-
-    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ":" + port + dbUri.getPath();
-
-    return DriverManager.getConnection(dbUrl, username, password);
-  }
-
-  public static void main(String[] args) throws Exception {
-    Server server = new Server(Integer.valueOf(System.getenv("PORT")));
-    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-    context.setContextPath("/");
-    server.setHandler(context);
-    context.addServlet(new ServletHolder(new Main()),"/*");
-    server.start();
-    server.join();
-  }
+//  public static void main(String[] args) throws Exception {
+//    Server server = new Server(Integer.valueOf(System.getenv("PORT")));
+//    ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+//    context.setContextPath("/");
+//    server.setHandler(context);
+//    context.addServlet(new ServletHolder(new Main()),"/*");
+//    server.start();
+//    server.join();
+//  }
 }

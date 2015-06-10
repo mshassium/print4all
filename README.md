@@ -13,7 +13,7 @@ $ git clone https://github.com/heroku/java-getting-started.git
 $ cd java-getting-started
 $ mvn install
 $ foreman start web
-```
+```orem
 
 Your app should now be running on [localhost:5000](http://localhost:5000/).
 
