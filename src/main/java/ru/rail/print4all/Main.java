@@ -1,12 +1,16 @@
 package ru.rail.print4all;
 
-import java.io.IOException;
+import db.DBConnectionHelper;
+
 import javax.servlet.ServletException;
-import javax.servlet.http.*;
-
-import ru.rail.print4all.db.DBConnectionHelper;
-
-import java.sql.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Main extends HttpServlet {
 
@@ -16,7 +20,7 @@ public class Main extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    if (req.getRequestURI().endsWith("/ru/rail/print4all/db")) {
+    if (req.getRequestURI().endsWith("/db")) {
       showDatabase(req,resp);
     } else {
       showHome(req,resp);
