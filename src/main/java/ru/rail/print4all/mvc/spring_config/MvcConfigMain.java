@@ -1,4 +1,4 @@
-package ru.rail.print4all.spring_config;
+package ru.rail.print4all.mvc.spring_config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = {"ru.rail.print4all"})
+@ComponentScan(basePackages = {"ru.rail.print4all.mvc"})
 public class MvcConfigMain extends WebMvcConfigurerAdapter {
 
 

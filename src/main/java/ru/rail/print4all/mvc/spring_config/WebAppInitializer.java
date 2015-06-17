@@ -1,4 +1,4 @@
-package ru.rail.print4all.spring_config;
+package ru.rail.print4all.mvc.spring_config;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
