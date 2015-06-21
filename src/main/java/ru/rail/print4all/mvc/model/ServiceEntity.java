@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class ServiceEntity {
     private int idService;
     private String name;
-    private double price;
+    private String price;
 
     @Id
     @Column(name = "id_service", nullable = false, insertable = true, updatable = true)
@@ -33,12 +33,12 @@ public class ServiceEntity {
     }
 
     @Basic
-    @Column(name = "price", nullable = false, insertable = true, updatable = true, precision = 0)
-    public double getPrice() {
+    @Column(name = "price", nullable = false, insertable = true, updatable = true, length = 20)
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -50,20 +50,17 @@ public class ServiceEntity {
         ServiceEntity that = (ServiceEntity) o;
 
         if (idService != that.idService) return false;
-        if (Double.compare(that.price, price) != 0) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (price != null ? !price.equals(that.price) : that.price != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = idService;
+        int result = idService;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (price != null ? price.hashCode() : 0);
         return result;
     }
 }

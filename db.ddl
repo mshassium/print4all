@@ -54,7 +54,7 @@ CREATE TABLE service
 (
     id_service SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(300) NOT NULL,
-    price DOUBLE PRECISION NOT NULL
+    price VARCHAR(20) NOT NULL
 );
 CREATE TABLE service_id_service_seq
 (
@@ -69,10 +69,24 @@ CREATE TABLE service_id_service_seq
     is_cycled BOOL NOT NULL,
     is_called BOOL NOT NULL
 );
-CREATE TABLE services_points
+CREATE TABLE service_point
 (
+    id SERIAL PRIMARY KEY NOT NULL,
     id_service INT NOT NULL,
     id_point INT NOT NULL
+);
+CREATE TABLE service_point_id_seq
+(
+    sequence_name VARCHAR NOT NULL,
+    last_value BIGINT NOT NULL,
+    start_value BIGINT NOT NULL,
+    increment_by BIGINT NOT NULL,
+    max_value BIGINT NOT NULL,
+    min_value BIGINT NOT NULL,
+    cache_value BIGINT NOT NULL,
+    log_cnt BIGINT NOT NULL,
+    is_cycled BOOL NOT NULL,
+    is_called BOOL NOT NULL
 );
 CREATE TABLE users
 (
@@ -88,5 +102,6 @@ ALTER TABLE organisations ADD FOREIGN KEY (id_point) REFERENCES point (id_point)
 CREATE UNIQUE INDEX unique_id_organisation ON organisations (id_organisation);
 CREATE UNIQUE INDEX unique_id_point ON point (id_point);
 CREATE UNIQUE INDEX unique_id_service ON service (id_service);
-ALTER TABLE services_points ADD FOREIGN KEY (id_point) REFERENCES point (id_point);
-ALTER TABLE services_points ADD FOREIGN KEY (id_service) REFERENCES service (id_service);
+ALTER TABLE service_point ADD FOREIGN KEY (id_point) REFERENCES point (id_point);
+ALTER TABLE service_point ADD FOREIGN KEY (id_service) REFERENCES service (id_service);
+CREATE UNIQUE INDEX unique_id ON service_point (id);
