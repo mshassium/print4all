@@ -1,6 +1,7 @@
 package ru.rail.print4all.mvc.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by root on 21.06.15.
@@ -11,6 +12,7 @@ public class ServiceEntity {
     private int idService;
     private String name;
     private String price;
+    private Collection<ServicePointEntity> servicePointsByIdService;
 
     @Id
     @Column(name = "id_service", nullable = false, insertable = true, updatable = true)
@@ -62,5 +64,14 @@ public class ServiceEntity {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (price != null ? price.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "serviceByIdService")
+    public Collection<ServicePointEntity> getServicePointsByIdService() {
+        return servicePointsByIdService;
+    }
+
+    public void setServicePointsByIdService(Collection<ServicePointEntity> servicePointsByIdService) {
+        this.servicePointsByIdService = servicePointsByIdService;
     }
 }

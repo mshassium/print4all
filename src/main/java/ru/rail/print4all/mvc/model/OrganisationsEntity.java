@@ -1,6 +1,7 @@
 package ru.rail.print4all.mvc.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Created by root on 21.06.15.
@@ -10,6 +11,7 @@ import javax.persistence.*;
 public class OrganisationsEntity {
     private int idOrganisation;
     private String name;
+    private Collection<PointEntity> pointsByIdOrganisation;
 
     @Id
     @Column(name = "id_organisation", nullable = false, insertable = true, updatable = true)
@@ -49,5 +51,14 @@ public class OrganisationsEntity {
         int result = idOrganisation;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "organisationsByIdOrganisation")
+    public Collection<PointEntity> getPointsByIdOrganisation() {
+        return pointsByIdOrganisation;
+    }
+
+    public void setPointsByIdOrganisation(Collection<PointEntity> pointsByIdOrganisation) {
+        this.pointsByIdOrganisation = pointsByIdOrganisation;
     }
 }

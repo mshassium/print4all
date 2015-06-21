@@ -14,8 +14,7 @@ CREATE TABLE hibernate_sequence
 CREATE TABLE organisations
 (
     id_organisation SERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR(200) NOT NULL,
-    id_point INT NOT NULL
+    name VARCHAR(200) NOT NULL
 );
 CREATE TABLE organisations_id_organisation_seq
 (
@@ -35,7 +34,8 @@ CREATE TABLE point
     id_point SERIAL PRIMARY KEY NOT NULL,
     opening_times VARCHAR NOT NULL,
     address VARCHAR(200) NOT NULL,
-    coordinates VARCHAR(200) NOT NULL
+    coordinates VARCHAR(200) NOT NULL,
+    id_organisation INT
 );
 CREATE TABLE point_id_point_seq
 (
@@ -98,8 +98,8 @@ CREATE TABLE users
     password VARCHAR(255),
     PRIMARY KEY (id, email)
 );
-ALTER TABLE organisations ADD FOREIGN KEY (id_point) REFERENCES point (id_point);
 CREATE UNIQUE INDEX unique_id_organisation ON organisations (id_organisation);
+ALTER TABLE point ADD FOREIGN KEY (id_organisation) REFERENCES organisations (id_organisation);
 CREATE UNIQUE INDEX unique_id_point ON point (id_point);
 CREATE UNIQUE INDEX unique_id_service ON service (id_service);
 ALTER TABLE service_point ADD FOREIGN KEY (id_point) REFERENCES point (id_point);
