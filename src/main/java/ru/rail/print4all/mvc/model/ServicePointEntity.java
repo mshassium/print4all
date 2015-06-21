@@ -3,7 +3,7 @@ package ru.rail.print4all.mvc.model;
 import javax.persistence.*;
 
 /**
- * Created by root on 21.06.15.
+ * Created by root on 22.06.15.
  */
 @Entity
 @Table(name = "service_point", schema = "public", catalog = "print4all")
@@ -11,8 +11,6 @@ public class ServicePointEntity {
     private int id;
     private int idService;
     private int idPoint;
-    private PointEntity pointByIdPoint;
-    private ServiceEntity serviceByIdService;
 
     @Id
     @Column(name = "id", nullable = false, insertable = true, updatable = true)
@@ -64,25 +62,5 @@ public class ServicePointEntity {
         result = 31 * result + idService;
         result = 31 * result + idPoint;
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_point", referencedColumnName = "id_point", nullable = false)
-    public PointEntity getPointByIdPoint() {
-        return pointByIdPoint;
-    }
-
-    public void setPointByIdPoint(PointEntity pointByIdPoint) {
-        this.pointByIdPoint = pointByIdPoint;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_service", referencedColumnName = "id_service", nullable = false)
-    public ServiceEntity getServiceByIdService() {
-        return serviceByIdService;
-    }
-
-    public void setServiceByIdService(ServiceEntity serviceByIdService) {
-        this.serviceByIdService = serviceByIdService;
     }
 }

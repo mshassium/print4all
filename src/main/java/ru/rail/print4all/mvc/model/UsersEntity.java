@@ -3,7 +3,7 @@ package ru.rail.print4all.mvc.model;
 import javax.persistence.*;
 
 /**
- * Created by root on 21.06.15.
+ * Created by root on 22.06.15.
  */
 @Entity
 @Table(name = "users", schema = "public", catalog = "print4all")

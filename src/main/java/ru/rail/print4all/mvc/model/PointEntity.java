@@ -1,10 +1,9 @@
 package ru.rail.print4all.mvc.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 /**
- * Created by root on 21.06.15.
+ * Created by root on 22.06.15.
  */
 @Entity
 @Table(name = "point", schema = "public", catalog = "print4all")
@@ -14,8 +13,6 @@ public class PointEntity {
     private String address;
     private String coordinates;
     private Integer idOrganisation;
-    private OrganisationsEntity organisationsByIdOrganisation;
-    private Collection<ServicePointEntity> servicePointsByIdPoint;
 
     @Id
     @Column(name = "id_point", nullable = false, insertable = true, updatable = true)
@@ -92,24 +89,5 @@ public class PointEntity {
         result = 31 * result + (coordinates != null ? coordinates.hashCode() : 0);
         result = 31 * result + (idOrganisation != null ? idOrganisation.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_organisation", referencedColumnName = "id_organisation")
-    public OrganisationsEntity getOrganisationsByIdOrganisation() {
-        return organisationsByIdOrganisation;
-    }
-
-    public void setOrganisationsByIdOrganisation(OrganisationsEntity organisationsByIdOrganisation) {
-        this.organisationsByIdOrganisation = organisationsByIdOrganisation;
-    }
-
-    @OneToMany(mappedBy = "pointByIdPoint")
-    public Collection<ServicePointEntity> getServicePointsByIdPoint() {
-        return servicePointsByIdPoint;
-    }
-
-    public void setServicePointsByIdPoint(Collection<ServicePointEntity> servicePointsByIdPoint) {
-        this.servicePointsByIdPoint = servicePointsByIdPoint;
     }
 }

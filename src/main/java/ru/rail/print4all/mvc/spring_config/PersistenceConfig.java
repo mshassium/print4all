@@ -85,7 +85,7 @@ public class PersistenceConfig {
     Properties hibernateProperties() {
         return new Properties() {
             {
-                setProperty("hibernate.hbm2ddl.auto", "create");
+                setProperty("hibernate.hbm2ddl.auto", "update");
                 setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
                 setProperty("hibernate.globally_quoted_identifiers", "true");
             }

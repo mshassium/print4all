@@ -1,17 +1,15 @@
 package ru.rail.print4all.mvc.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 /**
- * Created by root on 21.06.15.
+ * Created by root on 22.06.15.
  */
 @Entity
 @Table(name = "organisations", schema = "public", catalog = "print4all")
 public class OrganisationsEntity {
     private int idOrganisation;
     private String name;
-    private Collection<PointEntity> pointsByIdOrganisation;
 
     @Id
     @Column(name = "id_organisation", nullable = false, insertable = true, updatable = true)
@@ -51,14 +49,5 @@ public class OrganisationsEntity {
         int result = idOrganisation;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
-    }
-
-    @OneToMany(mappedBy = "organisationsByIdOrganisation")
-    public Collection<PointEntity> getPointsByIdOrganisation() {
-        return pointsByIdOrganisation;
-    }
-
-    public void setPointsByIdOrganisation(Collection<PointEntity> pointsByIdOrganisation) {
-        this.pointsByIdOrganisation = pointsByIdOrganisation;
     }
 }

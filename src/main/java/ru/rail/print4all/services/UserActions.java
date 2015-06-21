@@ -1,6 +1,6 @@
 package ru.rail.print4all.services;
 
-import ru.rail.print4all.mvc.model.User;
+import ru.rail.print4all.mvc.model.UsersEntity;
 
 import java.util.List;
 
@@ -9,15 +9,15 @@ import java.util.List;
  */
 public interface UserActions {
 
-    public User getUser(int id);
+    public UsersEntity getUser(int id);
 
-    public List<User> getAllUser();
+    public List<UsersEntity> getAllUser();
 
     public int deleteUser(int id);
 
-    public User updateUser(int id);
+    public UsersEntity updateUser(int id);
 
-    public int createUser(User user);
+    public int createUser(UsersEntity user);
 
-    boolean checkExist(User user);
+    boolean checkExist(UsersEntity user);
 }

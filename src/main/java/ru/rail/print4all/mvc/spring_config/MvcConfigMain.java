@@ -9,7 +9,11 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+import ru.rail.print4all.services.OrganisationActions;
+import ru.rail.print4all.services.ServiceActions;
 import ru.rail.print4all.services.UserActions;
+import ru.rail.print4all.services.impl.OrganisationActionsImpl;
+import ru.rail.print4all.services.impl.ServiceActionsImpl;
 import ru.rail.print4all.services.impl.UserActionsImpl;
 
 import java.util.Properties;
@@ -56,5 +60,17 @@ public class MvcConfigMain extends WebMvcConfigurerAdapter {
     @Bean
     public UserActions userActions(){
         return new UserActionsImpl();
+    }
+
+
+    @Bean
+    public OrganisationActions organisationActions(){
+        return new OrganisationActionsImpl();
+    }
+
+
+    @Bean
+    public ServiceActions serviceActions(){
+        return new ServiceActionsImpl();
     }
 }
