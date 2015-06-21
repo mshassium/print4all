@@ -9,6 +9,8 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
+import ru.rail.print4all.services.UserActions;
+import ru.rail.print4all.services.impl.UserActionsImpl;
 
 import java.util.Properties;
 
@@ -50,5 +52,9 @@ public class MvcConfigMain extends WebMvcConfigurerAdapter {
         bean.setTemplateLoaderPath("/WEB-INF/ftl/");
         bean.setFreemarkerSettings(properties);
         return bean;
+    }
+    @Bean
+    public UserActions userActions(){
+        return new UserActionsImpl();
     }
 }

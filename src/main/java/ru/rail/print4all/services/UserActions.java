@@ -18,4 +18,6 @@ public interface UserActions {
     public User updateUser(int id);
 
     public int createUser(User user);
+
+    boolean checkExist(User user);
 }

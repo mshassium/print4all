@@ -1,16 +1,30 @@
 package ru.rail.print4all.mvc.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: rakh1213
  */
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+
+    public User (String firstName,String lastName, String email, String password){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+    }
+
+    public User (String email, String password){
+        this.email = email;
+        this.password = password;
+    }
 
     @GeneratedValue
     @Id
+    @Column (name = "id")
     private Integer id;
 
     @Column(name = "fistname")
@@ -23,6 +37,7 @@ public class User {
     private String login;
 
     @Column(name = "email")
+    @Id
     private String email;
 
     @Column(name = "password")
