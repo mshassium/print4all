@@ -2,101 +2,152 @@
 <html>
 <head>
     <title>PRINT4ALL</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <!--[if lte IE 8]>
-    <script src="resources/template1/js/ie/html5shiv.js"></script><![endif]-->
-    <link rel="stylesheet" href="resources/template1/css/main.css"/>
-    <!--[if lte IE 8]>
-    <link rel="stylesheet" href="resources/template1/css/ie8.css"/><![endif]-->
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="resources/template1/css/ie9.css"/><![endif]-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="resources/css/loginStyle.css"/>
 </head>
 <body>
-
-<!-- Second -->
-<section id="addNewPost" class="main">
-    <div class="content dark style2">
-        <div class="container">
+<div id="wrapper">
+    <div id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <li class="sidebar-brand">
+                <a href="#">
+                    Start Bootstrap
+                </a>
+            </li>
+            <li>
+                <a href="#">Dashboard</a>
+            </li>
+            <li>
+                <a href="#">Shortcuts</a>
+            </li>
+            <li>
+                <a href="#">Overview</a>
+            </li>
+            <li>
+                <a href="#">Events</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </div>
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
             <div class="row">
-                <div class="4u 12u(narrow)">
-                    <section>
-                        <h3>Добавить новую точку печати очень просто.<br/> Заполните форму ниже.<br/> У Вас все
-                            получится!</h3>
-
-                        <div class="container 75%">
-                            <form method="post" action="sendNewPoint">
-                                <div class="row 50%">
-                                    <div class="7u 12u(mobile)">
-                                        <label>Наименование организации</label>
-                                        <select name="organisation_name">
-                                        <#list nameOrganisation as item>
-                                            <option>${item.name}</option>
-                                        </#list>
-                                        </select>
-                                    </div>
-                                </div>
-                                <br/>
-                                <label>Адрес (Россия, Саратов, Белоглинская улица, 17)</label>
-
-                                <div class="row 50%">
-                                    <div class="7u 12u(mobile)">
-                                        <input name="address" type="text"/>
-                                    </div>
-                                </div>
-                                <br/>
-                                <label>Часы работы</label>
-
-                                <div class="row 50%">
-                                    <div class="3u 12u(mobile)"><input name="before_time" type="time" value="08:00"/>
-                                    </div>
-                                    <div class="3u 12u(mobile)"><input name="after_time" type="time" value="20:00"/>
-                                    </div>
-                                </div>
-                                <br/>
-                                <label>Список услуг</label>
-                            <#list services as service>
-                                <div class="row 50%">
-                                    <div class="5u 9u(mobile)">
-                                        <input type="text" value="${service.name}" readonly/>
-                                    </div>
-                                    <div class="2u 12u(mobile)">
-                                        <input type="text" value="${service.price} руб."/>
-                                    </div>
-                                </div>
-                            </#list>
-                                <br/>
-                                <label>Акции, скидки, спец предложения.</label>
-
-                                <div class="row 50%">
-                                    <div class="7u"><textarea name="message"></textarea></div>
-                                </div>
-                                <footer>
-                                    <button type="submit" class="button scrolly">Сохранить точку</button>
-                                </footer>
-                            </form>
-                        </div>
-
-                    </section>
+                <div class="col-lg-12">
+                    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
                 </div>
-                <div class="8u 12u(narrow)">
-                    <div class="row">
-                        <div class="6u">
-                        </div>
+            </div>
+            <div class="row" style="padding-top: 20px">
+                <div class="col-lg-12">
+                    <div class="well">
+                        <form method="post" action="sendNewPoint">
+                            <div class="row" style="padding-top: 20px">
+                                <div class="col-lg-12">
+                                    <label class="label label-info">Наименование организации</label>
+                                    <br/>
+                                    <select class="form-control focus" name="organisation_name">
+                                    <#list nameOrganisation as item>
+                                        <option>${item.name}</option>
+                                    </#list>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 20px">
+                                <div class="col-lg-12">
+                                    <label class="label label-info">Адрес (Россия, Саратов, Белоглинская улица,
+                                        17)</label>
+                                    <br/>
+                                    <input class="input-sm form-control" name="address" type="text"/>
+                                </div>
+                            </div>
+                            <br/>
+                            <label class="label label-info">Время работы</label>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time">ОТ</span>
+                                        </span>
+                                        <input class="form-control" name="before_time" type="time" value="08:00"/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                          <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-time">ДО</span>
+                                          </span>
+                                        <input class="form-control" name="after_time" type="time" value="20:00"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <label class="label label-info">Список услуг</label>
+                        <#list services as service>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+                                        </span>
+                                        <input class="form-control" type="text" value="${service.name}"/>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                                <!-- /.col-lg-6 -->
+                                <div class="col-lg-6">
+                                    <div class="input-group">
+                                        <input class="form-control" type="text" value="${service.price} руб."/>
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+                                        </span>
+                                    </div>
+                                    <!-- /input-group -->
+                                </div>
+                                <!-- /.col-lg-6 -->
+                            </div>
+                            <!-- /.row -->
+                        </#list>
+                            <br/>
+                            <label class="label label-info">Акции, скидки, спец предложения.</label>
+
+                            <div>
+                                <textarea class="form-control text" name="message"></textarea>
+                            </div>
+                            <br/>
+                            <footer>
+                                <button type="submit" class="btn btn-success">Сохранить точку</button>
+                            </footer>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
 <!-- Scripts -->
-<script src="resources/template1/js/jquery.min.js"></script>
-<script src="resources/template1/js/jquery.scrolly.min.js"></script>
-<script src="resources/template1/js/skel.min.js"></script>
-<script src="resources/template1/js/util.js"></script>
-<!--[if lte IE 8]>
-<script src="resources/template1/js/ie/respond.min.js"></script><![endif]-->
-<script src="resources/template1/js/main.js"></script>
-
+<script src="resources/js/jquery-1.11.3.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+<script>
+    $("#menu-toggle").click(function (e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+</script>
 </body>
 </html>
