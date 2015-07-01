@@ -12,8 +12,6 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Properties;
 
 /**
@@ -36,37 +34,37 @@ public class PersistenceConfig {
         return sessionFactory;
     }
 
-    @Bean
-    public DataSource restDataSource() {
-        BasicDataSource dataSource = new BasicDataSource();
-        URI dbUri = null;
-        try {
-            dbUri = new URI(System.getenv("DATABASE_URL"));
-        } catch (URISyntaxException e) {
-            throw new RuntimeException("!!!!----------dbUri NULL--------------!!!!");
-        }
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        int port = dbUri.getPort();
-        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ":" + port + dbUri.getPath();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl(dbUrl);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        return dataSource;
-    }
-
 //    @Bean
 //    public DataSource restDataSource() {
 //        BasicDataSource dataSource = new BasicDataSource();
-//        String username = "postgres";
-//        String password = "rail";
+//        URI dbUri = null;
+//        try {
+//            dbUri = new URI(System.getenv("DATABASE_URL"));
+//        } catch (URISyntaxException e) {
+//            throw new RuntimeException("!!!!----------dbUri NULL--------------!!!!");
+//        }
+//        String username = dbUri.getUserInfo().split(":")[0];
+//        String password = dbUri.getUserInfo().split(":")[1];
+//        int port = dbUri.getPort();
+//        String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ":" + port + dbUri.getPath();
 //        dataSource.setDriverClassName("org.postgresql.Driver");
-//        dataSource.setUrl(LOCAL_URL);
+//        dataSource.setUrl(dbUrl);
 //        dataSource.setUsername(username);
 //        dataSource.setPassword(password);
 //        return dataSource;
 //    }
+
+    @Bean
+    public DataSource restDataSource() {
+        BasicDataSource dataSource = new BasicDataSource();
+        String username = "postgres";
+        String password = "rail";
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl(LOCAL_URL);
+        dataSource.setUsername(username);
+        dataSource.setPassword(password);
+        return dataSource;
+    }
 
     @Bean
     @Autowired
