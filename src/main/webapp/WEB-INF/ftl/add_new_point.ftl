@@ -10,39 +10,24 @@
     <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="resources/css/loginStyle.css"/>
+    <!-- Scripts -->
+    <script src="resources/js/jquery-1.11.3.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <script>
+        $(function(){
+            $("#sidebar-wrapper").load("resources/imports/wrap_panel.html");
+        });
+    </script>
 </head>
 <body>
 <div id="wrapper">
-    <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-                <a href="#">
-                    Start Bootstrap
-                </a>
-            </li>
-            <li>
-                <a href="#">Dashboard</a>
-            </li>
-            <li>
-                <a href="#">Shortcuts</a>
-            </li>
-            <li>
-                <a href="#">Overview</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
+    <div id="sidebar-wrapper"></div>
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row">
@@ -103,7 +88,8 @@
                                 <div class="col-lg-6">
                                     <div class="input-group">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+                                            <button class="btn btn-default" type="button"><span
+                                                    class="glyphicon glyphicon-minus"></span></button>
                                         </span>
                                         <input class="form-control" type="text" value="${service.name}"/>
                                     </div>
@@ -114,7 +100,8 @@
                                     <div class="input-group">
                                         <input class="form-control" type="text" value="${service.price} руб."/>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+                                            <button class="btn btn-default" type="button"><span
+                                                    class="glyphicon glyphicon-plus"></span></button>
                                         </span>
                                     </div>
                                     <!-- /input-group -->
@@ -140,14 +127,5 @@
         </div>
     </div>
 </div>
-<!-- Scripts -->
-<script src="resources/js/jquery-1.11.3.min.js"></script>
-<script src="resources/js/bootstrap.min.js"></script>
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-</script>
 </body>
 </html>

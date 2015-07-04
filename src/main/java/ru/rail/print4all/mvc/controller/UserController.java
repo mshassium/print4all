@@ -3,12 +3,17 @@ package ru.rail.print4all.mvc.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.rail.print4all.mvc.model.OrganisationsEntity;
+import ru.rail.print4all.mvc.model.PointEntity;
 import ru.rail.print4all.mvc.model.ServiceEntity;
 import ru.rail.print4all.services.OrganisationActions;
+import ru.rail.print4all.services.PointActions;
 import ru.rail.print4all.services.ServiceActions;
 import ru.rail.print4all.services.UserActions;
 
@@ -29,6 +34,9 @@ public class UserController {
     @Autowired
     ServiceActions serviceActions;
 
+    @Autowired
+    PointActions pointActions;
+
     @RequestMapping("/")
     public String indexPage(Model model) {
         model.addAttribute("username", "1");
@@ -43,6 +51,17 @@ public class UserController {
         model.addAttribute("nameOrganisation",allOrganisations);
         model.addAttribute("services",allServices);
         return "add_new_point";
+    }
+
+    @RequestMapping("/getPrice")
+    public String getPrice(Model model){
+        return "get_price";
+    }
+
+    @RequestMapping(value = "getAllMapData", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json, text/javascript")
+    public @ResponseBody List<String> getAllMapData(Model model){
+        List<String> allCoordinates = pointActions.getAllCoordinates();
+        return allCoordinates;
     }
 
 }
