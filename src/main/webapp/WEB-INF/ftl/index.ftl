@@ -12,10 +12,45 @@
     <script src="resources/js/jquery-1.11.3.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/mainJs.js"></script>
-    <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"> </script>
+    <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"
+            type="text/javascript"></script>
     <script>
         $(function () {
             $("#sidebar-wrapper").load("resources/imports/wrap_panel.html");
+        });
+        $(document).on('change', '.btn-file :file', function() {
+            var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [numFiles, label]);
+        });
+
+        $(document).ready( function() {
+            $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+
+                var input = $(this).parents('.input-group').find(':text'),
+                        log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                if( input.length ) {
+                    input.val(log);
+                } else {
+                    if( log ) alert(log);
+                }
+
+            });
+        });
+        $('form[name=allData]').submit(function(){
+
+            // Maybe show a loading indicator...
+
+            $.post($(this).attr('action'), $(this).serialize(), function(res){
+                // Do something with the response `res`
+                console.log(res);
+                // Don't forget to hide the loading indicator!
+            });
+
+            return false; // prevent default action
+
         });
     </script>
 </head>
@@ -26,102 +61,69 @@
         <div class="container-fluid">
             <div class="row" style="padding-top: 20px">
                 <div class="col-lg-12">
-                    <div class="well">
-                        <form method="post" action="sendNewPoint">
-                            <div class="row" style="padding-top: 20px">
-                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingOne">
-                                            <h4 class="panel-title">
-                                                <a class="collapsed glyphicon glyphicon-asterisk" role="button" data-toggle="collapse" data-parent="#accordion"
-                                                   href="#maps_line" aria-expanded="false" aria-controls="collapseOne" onclick="getMapData()">
-                                                    Выберите ближайшую удобную точку печати.
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="maps_line" class="panel-collapse collapse in" role="tabpanel"
-                                             aria-labelledby="maps">
-                                            <div class="panel-body">
-                                                <div id="map" style="width: 600px; height: 400px"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingTwo">
-                                            <h4 class="panel-title">
-                                                <a class="glyphicon glyphicon-asterisk collapsed" role="button" data-toggle="collapse"
-                                                   data-parent="#accordion" href="#file_line" aria-expanded="false"
-                                                   aria-controls="collapseTwo">
-                                                    Загрузите файл
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="file_line" class="panel-collapse collapse" role="tabpanel"
-                                             aria-labelledby="headingTwo">
-                                            <div class="panel-body">
-                                                Файл
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingThree">
-                                            <h4 class="panel-title">
-                                                <a class="glyphicon glyphicon-asterisk collapsed" role="button" data-toggle="collapse"
-                                                   data-parent="#accordion" href="#params_line" aria-expanded="false"
-                                                   aria-controls="collapseThree">
-                                                    Настройте параметры печати
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="params_line" class="panel-collapse collapse" role="tabpanel"
-                                             aria-labelledby="headingThree">
-                                            <div class="panel-body">
-                                                Здесь параметры
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingThree">
-                                            <h4 class="panel-title">
-                                                <a class="glyphicon glyphicon-asterisk collapsed" role="button" data-toggle="collapse"
-                                                   data-parent="#accordion" href="#money_line" aria-expanded="false"
-                                                   aria-controls="collapseThree">
-                                                    Выберите способ оплаты
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="money_line" class="panel-collapse collapse" role="tabpanel"
-                                             aria-labelledby="headingThree">
-                                            <div class="panel-body">
-                                                Способы оплаты
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="headingThree">
-                                            <h4 class="panel-title">
-                                                <a class="glyphicon glyphicon-asterisk collapsed" role="button" data-toggle="collapse"
-                                                   data-parent="#accordion" href="#get_line" aria-expanded="false"
-                                                   aria-controls="collapseThree">
-                                                    Забирайте
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="get_line" class="panel-collapse collapse" role="tabpanel"
-                                             aria-labelledby="headingThree">
-                                            <div class="panel-body">
-                                                ПОлучить код заказа и проверить статус.
-                                            </div>
-                                        </div>
-                                    </div>
+
+                    <form name="allData" method="post" action="sendNewPoint">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="row step" style="padding-top: 20px">
+                                <button class="btn btn-info glyphicon glyphicon-asterisk" type="button"
+                                        data-toggle="collapse" data-target="#maps_line"
+                                        onclick="getMapData()">
+                                    Выберите ближайшую удобную точку печати.
+                                </button>
+                                <div id="maps_line" class="step_in collapse">
+                                    <div id="map" style="width: 600px; height: 400px"></div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="row step" style="padding-top: 20px">
+                                <button class="btn btn-info glyphicon glyphicon-asterisk" type="button"
+                                        data-toggle="collapse" data-target="#file_line">
+                                    Загрузите файл
+                                </button>
+                                <div class="step_in collapse" id="file_line"><div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Browse&hellip; <input type="file" multiple>
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div></div>
+                            </div>
+                            <div class="row step" style="padding-top: 20px">
+                                <button class="btn btn-info glyphicon glyphicon-asterisk" type="button"
+                                        data-toggle="collapse" data-target="#params_line">
+                                    Настройте параметры печати
+                                </button>
+                                <div id="params_line" class="step_in collapse">
+                                    Здесь параметры
+                                </div>
+                            </div>
+                            <div class="row step" style="padding-top: 20px">
+                                <button class="btn btn-info glyphicon glyphicon-asterisk" type="button"
+                                        data-toggle="collapse" data-target="#money_line">
+                                    Выберите способ оплаты
+                                </button>
+                                <div id="money_line" class="step_in collapse">
+                                    Способы оплаты
+                                </div>
+                            </div>
+                            <div class="row step" style="padding-top: 20px">
+                                <button class="btn btn-info glyphicon glyphicon-asterisk" type="submit"
+                                        data-toggle="collapse" data-target="#get_line">
+                                    Забирайте
+                                </button>
+                                <div id="get_line" class="step_in collapse">
+                                    ПОлучить код заказа и проверить статус.
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

@@ -22,16 +22,11 @@ public class PointActionsImpl implements PointActions {
     private SessionFactory sessionFactory;
 
     @Transactional
-    public List<String> getAllCoordinates() {
+    public List<PointEntity> getAllCoordinates() {
         log.info("GET ALL COORDINATES START");
         Session currentSession = sessionFactory.getCurrentSession();
         List<PointEntity> list = currentSession.createCriteria(PointEntity.class).list();
-        List<String> allCoordinates = new ArrayList<String>();
-        for (PointEntity pointEntity : list) {
-            allCoordinates.add(pointEntity.getCoordinates());
-        }
-        log.info("Count coordinates = ", allCoordinates.size());
         log.info("GET ALL COORDINATES FINISH");
-        return allCoordinates;
+        return list;
     }
 }

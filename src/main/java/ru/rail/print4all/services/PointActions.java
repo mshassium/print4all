@@ -1,5 +1,7 @@
 package ru.rail.print4all.services;
 
+import ru.rail.print4all.mvc.model.PointEntity;
+
 import java.util.List;
 
 /**
@@ -7,6 +9,6 @@ import java.util.List;
  */
 public interface PointActions {
 
-    public List<String> getAllCoordinates();
+    public List<PointEntity> getAllCoordinates();
 
 }

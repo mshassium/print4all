@@ -59,8 +59,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "getAllMapData", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json, text/javascript")
-    public @ResponseBody List<String> getAllMapData(Model model){
-        List<String> allCoordinates = pointActions.getAllCoordinates();
+    public @ResponseBody List<PointEntity> getAllMapData(Model model){
+        List<PointEntity> allCoordinates = pointActions.getAllCoordinates();
         return allCoordinates;
     }
 
