@@ -1,34 +1,7 @@
-# java-getting-started
+# PRINT4ALL
 
-A barebones Java app, which can easily be deployed to Heroku.  
+Сервис удаленного заказа печати документов.
 
-This application support the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
+Демоверсия доступна по адресу http://104.131.32.195:8080/
 
-## Running Locally
-
-Make sure you have Java and Maven installed.  Also, install the [Heroku Toolbelt](https://toolbelt.heroku.com/).
-
-```sh
-$ git clone https://github.com/heroku/java-getting-started.git
-$ cd java-getting-started
-$ mvn install
-$ foreman start web
- heroku deploy:war --war ./print4all-1.0.war --app print4all
-```orem
-
-Your app should now be running on [localhost:5000](http://localhost:5000/).
-
-## Deploying to Heroku
-
-```sh
-$ heroku create
-$ git push heroku master
-$ heroku open
-```
-
-## Documentation
-
-For more information about using Java on Heroku, see these Dev Center articles:
-
-- [Java on Heroku](https://devcenter.heroku.com/categories/java)
 
