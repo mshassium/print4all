@@ -21,8 +21,7 @@ a:hover,
 a:focus,
 a:active,
 a.active {
-    outline: 0;
-    color: #18bc9c;
+    color: #e8d676;
 }
 
 h1,
@@ -80,14 +79,8 @@ hr.star-primary:after {
 }
 
 header {
-    text-align: center;
     color: #fff;
     background: #18bc9c;
-}
-
-header .container {
-    padding-top: 100px;
-    padding-bottom: 50px;
 }
 
 header img {
@@ -110,8 +103,7 @@ header .intro-text .skills {
 
 @media(min-width:768px) {
     header .container {
-        padding-top: 200px;
-        padding-bottom: 100px;
+        padding-top: 64px;
     }
 
     header .intro-text .name {
@@ -123,9 +115,19 @@ header .intro-text .skills {
     }
 }
 
+ul.list-inline.steps {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.vertical {
+    display: inline;
+    border-left: 2px solid;
+    padding-left: 0.3em;
+}
+
 @media(min-width:768px) {
     .navbar-fixed-top {
-        padding: 25px 0;
         -webkit-transition: padding .3s;
         -moz-transition: padding .3s;
         transition: padding .3s;
@@ -186,15 +188,6 @@ section h2 {
 section.success {
     color: #fff;
     background: #18bc9c;
-}
-
-section.success a,
-section.success a:hover,
-section.success a:focus,
-section.success a:active,
-section.success a.active {
-    outline: 0;
-    color: #2c3e50;
 }
 
 @media(max-width:767px) {

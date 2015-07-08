@@ -19,32 +19,32 @@
         $(function () {
             $("#sidebar-wrapper").load("resources/imports/wrap_panel.html");
         });
-        $(document).on('change', '.btn-file :file', function() {
+        $(document).on('change', '.btn-file :file', function () {
             var input = $(this),
                     numFiles = input.get(0).files ? input.get(0).files.length : 1,
                     label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
             input.trigger('fileselect', [numFiles, label]);
         });
 
-        $(document).ready( function() {
-            $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+        $(document).ready(function () {
+            $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 
                 var input = $(this).parents('.input-group').find(':text'),
                         log = numFiles > 1 ? numFiles + ' files selected' : label;
 
-                if( input.length ) {
+                if (input.length) {
                     input.val(log);
                 } else {
-                    if( log ) alert(log);
+                    if (log) alert(log);
                 }
 
             });
         });
-        $('form[name=allData]').submit(function(){
+        $('form[name=allData]').submit(function () {
 
             // Maybe show a loading indicator...
 
-            $.post($(this).attr('action'), $(this).serialize(), function(res){
+            $.post($(this).attr('action'), $(this).serialize(), function (res) {
                 // Do something with the response `res`
                 console.log(res);
                 // Don't forget to hide the loading indicator!
@@ -57,16 +57,17 @@
 </head>
 <body>
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+            <a class="navbar-brand" href="#page-top">PRINT4ALL</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -90,75 +91,78 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-<#--<div id="wrapper">-->
-    <#--<div id="sidebar-wrapper"></div>-->
-    <#--<div id="page-content-wrapper">-->
-        <#--<div class="container-fluid">-->
-            <#--<div class="row" style="padding-top: 20px">-->
-                <#--<div class="col-lg-12">-->
-                    <#--<img src="resources/img/ico/print.svg">-->
-                    <#--<form name="allData" method="post" action="sendNewPoint">-->
-                        <#--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">-->
-                            <#--<div class="row step" style="padding-top: 20px">-->
-                                <#--<button class="btn btn-info glyphicon glyphicon-asterisk" type="button"-->
-                                        <#--data-toggle="collapse" data-target="#maps_line"-->
-                                        <#--onclick="getMapData()">-->
-                                    <#--Выберите ближайшую удобную точку печати.-->
-                                <#--</button>-->
-                                <#--<div id="maps_line" class="step_in collapse">-->
-                                    <#--<div id="map" style="width: 600px; height: 400px"></div>-->
-                                <#--</div>-->
-                            <#--</div>-->
-                            <#--<div class="row step" style="padding-top: 20px">-->
-                                <#--<button class="btn btn-info glyphicon glyphicon-asterisk" type="button"-->
-                                        <#--data-toggle="collapse" data-target="#file_line">-->
-                                    <#--Загрузите файл-->
-                                <#--</button>-->
-                                <#--<div class="step_in collapse" id="file_line"><div class="input-group">-->
-                                    <#--<span class="input-group-btn">-->
-                                        <#--<span class="btn btn-primary btn-file">-->
-                                            <#--Browse&hellip; <input type="file" multiple>-->
-                                        <#--</span>-->
-                                    <#--</span>-->
-                                    <#--<input type="text" class="form-control" readonly>-->
-                                <#--</div></div>-->
-                            <#--</div>-->
-                            <#--<div class="row step" style="padding-top: 20px">-->
-                                <#--<button class="btn btn-info glyphicon glyphicon-asterisk" type="button"-->
-                                        <#--data-toggle="collapse" data-target="#params_line">-->
-                                    <#--Настройте параметры печати-->
-                                <#--</button>-->
-                                <#--<div id="params_line" class="step_in collapse">-->
-                                    <#--Здесь параметры-->
-                                <#--</div>-->
-                            <#--</div>-->
-                            <#--<div class="row step" style="padding-top: 20px">-->
-                                <#--<button class="btn btn-info glyphicon glyphicon-asterisk" type="button"-->
-                                        <#--data-toggle="collapse" data-target="#money_line">-->
-                                    <#--Выберите способ оплаты-->
-                                <#--</button>-->
-                                <#--<div id="money_line" class="step_in collapse">-->
-                                    <#--Способы оплаты-->
-                                <#--</div>-->
-                            <#--</div>-->
-                            <#--<div class="row step" style="padding-top: 20px">-->
-                                <#--<button class="btn btn-info glyphicon glyphicon-asterisk" type="submit"-->
-                                        <#--data-toggle="collapse" data-target="#get_line">-->
-                                    <#--Забирайте-->
-                                <#--</button>-->
-                                <#--<div id="get_line" class="step_in collapse">-->
-                                    <#--ПОлучить код заказа и проверить статус.-->
-                                <#--</div>-->
-                            <#--</div>-->
-                        <#--</div>-->
-                    <#--</form>-->
-                <#--</div>-->
-            <#--</div>-->
-        <#--</div>-->
-    <#--</div>-->
-<#--</div>-->
-</div>
-</div>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="list-inline steps">
+                    <li role="presentation" class="vertical"><a class="step" data-toggle="collapse"
+                                                                data-target="#maps_line" onclick="getMapData()">1. Выбор
+                        места печати</a></li>
+                    <li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"
+                                                                         data-target="#file_line">2. Выбор документа
+                        печати</a></li>
+                    <li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"
+                                                                         data-target="#params_line">3. Настройка
+                        печати</a></li>
+                    <li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"
+                                                                         data-target="#money_line">4. Оплата</a></li>
+                    <li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"
+                                                                         data-target="#get_line">5. Статус заказа</a>
+                    </li>
+                    <li role="presentation" class="disabled vertical"><a class="disabled" href="#"> </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <div class="row" style="padding-top: 20px">
+            <div class="col-lg-12">
+                <form name="allData" method="post" action="sendNewPoint">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="row step" style="padding-top: 20px">
+                            <div id="maps_line" class="step_in collapse">
+                                <div id="map" style="width: 600px; height: 400px"></div>
+                            </div>
+                        </div>
+                        <div class="row step" style="padding-top: 20px">
+
+                            <div class="step_in collapse" id="file_line">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-primary btn-file">
+                                            Browse&hellip; <input type="file" multiple>
+                                        </span>
+                                    </span>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row step" style="padding-top: 20px">
+
+                            <div id="params_line" class="step_in collapse">
+                                Здесь параметры
+                            </div>
+                        </div>
+                        <div class="row step" style="padding-top: 20px">
+
+                            <div id="money_line" class="step_in collapse">
+                                Способы оплаты
+                            </div>
+                        </div>
+                        <div class="row step" style="padding-top: 20px">
+
+                            <div id="get_line" class="step_in collapse">
+                                ПОлучить код заказа и проверить статус.
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
