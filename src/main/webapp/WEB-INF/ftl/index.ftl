@@ -83,6 +83,7 @@
         </div>
 
         <div class="row">
+            <div class="col-sm-1 text-center"><span style="font-size: 6em">1</span></div>
             <div class="col-sm-4 step-item text-center">
                 <a href="#step1" class="step-link" data-toggle="modal" onclick="getMapData()">
                     <div class="caption">
@@ -90,8 +91,43 @@
                             <span class="glyphicon glyphicon-map-marker"> Выбери точку печати</span>
                         </div>
                     </div>
-                <#--<span class="glyphicon glyphicon-map-marker text_step">Место</span>-->
                     <img src="resources/img/submarine.png" class="step-img img-responsive" alt>
+                </a>
+            </div>
+            <div class="col-sm-4 step-item">
+                <a href="#step1" class="step-link">
+                    <img src="resources/img/next.png" class="step-img img-responsive" alt>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 step-item text-center"></div>
+            <div class="col-sm-1 text-center"><span style="font-size: 6em">2</span></div>
+            <div class="col-sm-4 step-item text-center">
+                <a href="#step1" class="step-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <span class="glyphicon glyphicon-download-alt"> Загрузи документ</span>
+                        </div>
+                    </div>
+                    <img src="resources/img/safe.png" class="step-img img-responsive" alt>
+                </a>
+            </div>
+            <div class="col-sm-4 step-item text-center">
+                <a href="#step1" class="step-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <span class="glyphicon glyphicon-credit-card"> Оплати</span>
+                        </div>
+                    </div>
+                    <img src="resources/img/pay.png" class="step-img img-responsive" alt>
+                </a>
+            </div>
+
+            <div class="col-sm-1 text-center"><span style="font-size: 6em">3</span></div>
+            <div class="col-sm-4 step-item">
+                <a href="#step1" class="step-link">
+                    <img src="resources/img/next2.png" class="step-img img-responsive" alt>
                 </a>
             </div>
         </div>
