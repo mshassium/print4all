@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="resources/css/freelancer.css"/>
+    <link href="resources/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
+          type="text/css">
     <!-- Scripts -->
     <script src="resources/js/jquery-1.11.3.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
@@ -15,16 +19,6 @@
     <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"
             type="text/javascript"></script>
     <script>
-        $(function () {
-            $("#sidebar-wrapper").load("resources/imports/wrap_panel.html");
-        });
-        $(document).on('change', '.btn-file :file', function () {
-            var input = $(this),
-                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
-                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-            input.trigger('fileselect', [numFiles, label]);
-        });
-
         $(document).ready(function () {
             $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
 
@@ -39,19 +33,8 @@
 
             });
         });
-        $('form[name=allData]').submit(function () {
-
-            // Maybe show a loading indicator...
-
-            $.post($(this).attr('action'), $(this).serialize(), function (res) {
-                // Do something with the response `res`
-                console.log(res);
-                // Don't forget to hide the loading indicator!
-            });
-
-            return false; // prevent default action
-
-        });
+        })
+        ;
     </script>
 </head>
 <body>
@@ -101,13 +84,14 @@
 
         <div class="row">
             <div class="col-sm-4 step-item text-center">
-                <a href="#step" class="step-link" data-toggle="modal">
+                <a href="#step1" class="step-link" data-toggle="modal" onclick="getMapData()">
                     <div class="caption">
                         <div class="caption-content">
-                            <i class="fa fa-search-plus fa-3x"></i>
+                            <span class="glyphicon glyphicon-map-marker"> Выбери точку печати</span>
                         </div>
                     </div>
-                    <span class="glyphicon glyphicon-map-marker text_step">Место</span>
+                <#--<span class="glyphicon glyphicon-map-marker text_step">Место</span>-->
+                    <img src="resources/img/submarine.png" class="step-img img-responsive" alt>
                 </a>
             </div>
         </div>
@@ -140,10 +124,6 @@
 <#--<form name="allData" method="post" action="sendNewPoint">-->
 <#--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">-->
 <#--<div class="row step" style="padding-top: 20px">-->
-<#--<div id="maps_line" class="step_in collapse">-->
-<#--<div id="map" style="width: 600px; height: 400px"></div>-->
-<#--</div>-->
-<#--</div>-->
 <#--<div class="row step" style="padding-top: 20px">-->
 
 <#--<div class="step_in collapse" id="file_line">-->
@@ -181,5 +161,36 @@
 <#--</div>-->
 <#--</div>-->
 <#--</div>-->
+<div class="portfolio-modal modal fade" id="step1" tabindex="-1" role="dialog" aria-hidden="true"
+     style="display: none;">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2 class="text-modal-body">Выберите точку печати</h2>
+                        <hr class="star-primary">
+                    <#--<img src="resources/img/submarine.png" class="img-responsive img-centered" alt="">-->
+                        <div id="map" class="step-map"></div>
+                        <ul style="font-size: 16px">
+                            <li>Выберите подходящую точку</li>
+                            <li>Щелкните на соответствующем маркере</li>
+                            <li>Нажмите кнопку Подтвердить</li>
+                        </ul>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Подтвердить</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

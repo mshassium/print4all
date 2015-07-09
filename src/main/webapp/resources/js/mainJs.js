@@ -4,7 +4,6 @@
 var myMap;
 var myPlacemark;
 var idPoint;
-$("div#file_line").dropzone({ url: "/file/post" });
 function getMapData(myMap) {
     var data;
     $.ajax({
