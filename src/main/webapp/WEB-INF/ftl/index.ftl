@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" href="resources/css/loginStyle.css"/>
     <link rel="stylesheet" href="resources/css/freelancer.css"/>
     <!-- Scripts -->
     <script src="resources/js/jquery-1.11.3.min.js"></script>
@@ -91,78 +90,96 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-<header>
+<section id="steps">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12">
-                <ul class="list-inline steps">
-                    <li role="presentation" class="vertical"><a class="step" data-toggle="collapse"
-                                                                data-target="#maps_line" onclick="getMapData()">1. Выбор
-                        места печати</a></li>
-                    <li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"
-                                                                         data-target="#file_line">2. Выбор документа
-                        печати</a></li>
-                    <li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"
-                                                                         data-target="#params_line">3. Настройка
-                        печати</a></li>
-                    <li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"
-                                                                         data-target="#money_line">4. Оплата</a></li>
-                    <li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"
-                                                                         data-target="#get_line">5. Статус заказа</a>
-                    </li>
-                    <li role="presentation" class="disabled vertical"><a class="disabled" href="#"> </a></li>
-                </ul>
+            <div class="col-lg-12 text-center">
+                <h2>Сделай 3 простых шага</h2>
+                <hr class="star-primary">
             </div>
         </div>
-    </div>
-</header>
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-        <div class="row" style="padding-top: 20px">
-            <div class="col-lg-12">
-                <form name="allData" method="post" action="sendNewPoint">
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="row step" style="padding-top: 20px">
-                            <div id="maps_line" class="step_in collapse">
-                                <div id="map" style="width: 600px; height: 400px"></div>
-                            </div>
-                        </div>
-                        <div class="row step" style="padding-top: 20px">
 
-                            <div class="step_in collapse" id="file_line">
-                                <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <span class="btn btn-primary btn-file">
-                                            Browse&hellip; <input type="file" multiple>
-                                        </span>
-                                    </span>
-                                    <input type="text" class="form-control" readonly>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row step" style="padding-top: 20px">
-
-                            <div id="params_line" class="step_in collapse">
-                                Здесь параметры
-                            </div>
-                        </div>
-                        <div class="row step" style="padding-top: 20px">
-
-                            <div id="money_line" class="step_in collapse">
-                                Способы оплаты
-                            </div>
-                        </div>
-                        <div class="row step" style="padding-top: 20px">
-
-                            <div id="get_line" class="step_in collapse">
-                                ПОлучить код заказа и проверить статус.
-                            </div>
+        <div class="row">
+            <div class="col-sm-4 step-item text-center">
+                <a href="#step" class="step-link" data-toggle="modal">
+                    <div class="caption">
+                        <div class="caption-content">
+                            <i class="fa fa-search-plus fa-3x"></i>
                         </div>
                     </div>
-                </form>
+                    <span class="glyphicon glyphicon-map-marker text_step">Место</span>
+                </a>
             </div>
         </div>
+
+    <#--<div class="col-sm-12">-->
+    <#--<ul class="list-inline steps">-->
+    <#--<li role="presentation" class="vertical"><a class="step" data-toggle="collapse"-->
+    <#--data-target="#maps_line" onclick="getMapData()">1. Выбор-->
+    <#--места печати</a></li>-->
+    <#--<li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"-->
+    <#--data-target="#file_line">2. Выбор документа-->
+    <#--печати</a></li>-->
+    <#--<li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"-->
+    <#--data-target="#params_line">3. Настройка-->
+    <#--печати</a></li>-->
+    <#--<li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"-->
+    <#--data-target="#money_line">4. Оплата</a></li>-->
+    <#--<li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"-->
+    <#--data-target="#get_line">5. Статус заказа</a>-->
+    <#--</li>-->
+    <#--<li role="presentation" class="disabled vertical"><a class="disabled" href="#"> </a></li>-->
+    <#--</ul>-->
+    <#--</div>-->
     </div>
-</div>
+</section>
+<#--<div id="page-content-wrapper">-->
+<#--<div class="container-fluid">-->
+<#--<div class="row" style="padding-top: 20px">-->
+<#--<div class="col-lg-12">-->
+<#--<form name="allData" method="post" action="sendNewPoint">-->
+<#--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">-->
+<#--<div class="row step" style="padding-top: 20px">-->
+<#--<div id="maps_line" class="step_in collapse">-->
+<#--<div id="map" style="width: 600px; height: 400px"></div>-->
+<#--</div>-->
+<#--</div>-->
+<#--<div class="row step" style="padding-top: 20px">-->
+
+<#--<div class="step_in collapse" id="file_line">-->
+<#--<div class="input-group">-->
+<#--<span class="input-group-btn">-->
+<#--<span class="btn btn-primary btn-file">-->
+<#--Browse&hellip; <input type="file" multiple>-->
+<#--</span>-->
+<#--</span>-->
+<#--<input type="text" class="form-control" readonly>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+<#--<div class="row step" style="padding-top: 20px">-->
+
+<#--<div id="params_line" class="step_in collapse">-->
+<#--Здесь параметры-->
+<#--</div>-->
+<#--</div>-->
+<#--<div class="row step" style="padding-top: 20px">-->
+
+<#--<div id="money_line" class="step_in collapse">-->
+<#--Способы оплаты-->
+<#--</div>-->
+<#--</div>-->
+<#--<div class="row step" style="padding-top: 20px">-->
+
+<#--<div id="get_line" class="step_in collapse">-->
+<#--ПОлучить код заказа и проверить статус.-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+<#--</form>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
+<#--</div>-->
 </body>
 </html>
