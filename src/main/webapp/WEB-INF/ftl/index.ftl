@@ -91,7 +91,7 @@
                             <span class="glyphicon glyphicon-map-marker"> Выбери точку печати</span>
                         </div>
                     </div>
-                    <img src="resources/img/submarine.png" class="step-img img-responsive" alt>
+                    <img src="resources/img/map.png" class="step-img img-responsive" alt>
                 </a>
             </div>
             <div class="col-sm-4 step-item">
@@ -110,7 +110,7 @@
                             <span class="glyphicon glyphicon-download-alt"> Загрузи документ</span>
                         </div>
                     </div>
-                    <img src="resources/img/safe.png" class="step-img img-responsive" alt>
+                    <img src="resources/img/document.png" class="step-img img-responsive" alt>
                 </a>
             </div>
             <div class="col-sm-4 step-item text-center">
