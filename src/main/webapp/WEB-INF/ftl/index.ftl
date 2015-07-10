@@ -83,7 +83,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-1 text-center"><span style="font-size: 6em">1</span></div>
+            <div class="col-sm-1 text-center text_numer_step"><span style="font-size: 6em">1</span></div>
             <div class="col-sm-4 step-item text-center">
                 <a href="#step1" class="step-link" data-toggle="modal" onclick="getMapData()">
                     <div class="caption">
@@ -96,13 +96,13 @@
             </div>
             <div class="col-sm-4 step-item">
                 <a href="#step1" class="step-link">
-                    <img src="resources/img/next.png" class="step-img img-responsive" alt>
+                    <img src="resources/img/next.png" class="step-img next-step img-responsive" alt>
                 </a>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4 step-item text-center"></div>
-            <div class="col-sm-1 text-center"><span style="font-size: 6em">2</span></div>
+            <div class="col-sm-1 text-center text_numer_step"><span style="font-size: 6em">2</span></div>
             <div class="col-sm-4 step-item text-center">
                 <a href="#step1" class="step-link" data-toggle="modal">
                     <div class="caption">
@@ -124,10 +124,10 @@
                 </a>
             </div>
 
-            <div class="col-sm-1 text-center"><span style="font-size: 6em">3</span></div>
+            <div class="col-sm-1 text-center text_numer_step"><span style="font-size: 6em">3</span></div>
             <div class="col-sm-4 step-item">
                 <a href="#step1" class="step-link">
-                    <img src="resources/img/next2.png" class="step-img img-responsive" alt>
+                    <img src="resources/img/next2.png" class="step-img next-step img-responsive" alt>
                 </a>
             </div>
         </div>

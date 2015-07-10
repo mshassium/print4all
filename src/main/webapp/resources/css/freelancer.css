@@ -272,3 +272,16 @@ i {
     width: 100%;
     height: 400px;
 }
+
+@media screen and (max-width: 600px) {
+    .next-step {
+        visibility: hidden;
+        clear: both;
+        display: none;
+    }
+    .text_numer_step {
+        visibility: hidden;
+        clear: both;
+        display: none;
+    }
+}
