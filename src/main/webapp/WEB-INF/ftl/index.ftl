@@ -18,24 +18,6 @@
     <script src="resources/js/mainJs.js"></script>
     <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"
             type="text/javascript"></script>
-    <script>
-        $(document).ready(function () {
-            $('.btn-file :file').on('fileselect', function (event, numFiles, label) {
-
-                var input = $(this).parents('.input-group').find(':text'),
-                        log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-                if (input.length) {
-                    input.val(log);
-                } else {
-                    if (log) alert(log);
-                }
-
-            });
-        });
-        })
-        ;
-    </script>
 </head>
 <body>
 <!-- Navigation -->
@@ -95,16 +77,14 @@
                 </a>
             </div>
             <div class="col-sm-4 step-item">
-                <a href="#step1" class="step-link">
-                    <img src="resources/img/next.png" class="step-img next-step img-responsive" alt>
-                </a>
+                <img src="resources/img/next.png" class="step-img next-step img-responsive" alt>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-4 step-item text-center"></div>
             <div class="col-sm-1 text-center text_numer_step"><span style="font-size: 6em">2</span></div>
             <div class="col-sm-4 step-item text-center">
-                <a href="#step1" class="step-link" data-toggle="modal">
+                <a href="#step2" class="step-link" data-toggle="modal">
                     <div class="caption">
                         <div class="caption-content">
                             <span class="glyphicon glyphicon-download-alt"> Загрузи документ</span>
@@ -114,7 +94,7 @@
                 </a>
             </div>
             <div class="col-sm-4 step-item text-center">
-                <a href="#step1" class="step-link" data-toggle="modal">
+                <a href="#step3" class="step-link" data-toggle="modal">
                     <div class="caption">
                         <div class="caption-content">
                             <span class="glyphicon glyphicon-credit-card"> Оплати</span>
@@ -126,77 +106,12 @@
 
             <div class="col-sm-1 text-center text_numer_step"><span style="font-size: 6em">3</span></div>
             <div class="col-sm-4 step-item">
-                <a href="#step1" class="step-link">
-                    <img src="resources/img/next2.png" class="step-img next-step img-responsive" alt>
-                </a>
+                <img src="resources/img/next2.png" class="step-img next-step img-responsive" alt>
             </div>
         </div>
-
-    <#--<div class="col-sm-12">-->
-    <#--<ul class="list-inline steps">-->
-    <#--<li role="presentation" class="vertical"><a class="step" data-toggle="collapse"-->
-    <#--data-target="#maps_line" onclick="getMapData()">1. Выбор-->
-    <#--места печати</a></li>-->
-    <#--<li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"-->
-    <#--data-target="#file_line">2. Выбор документа-->
-    <#--печати</a></li>-->
-    <#--<li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"-->
-    <#--data-target="#params_line">3. Настройка-->
-    <#--печати</a></li>-->
-    <#--<li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"-->
-    <#--data-target="#money_line">4. Оплата</a></li>-->
-    <#--<li role="presentation" class="disabled vertical"><a class="disabled" data-toggle="collapse"-->
-    <#--data-target="#get_line">5. Статус заказа</a>-->
-    <#--</li>-->
-    <#--<li role="presentation" class="disabled vertical"><a class="disabled" href="#"> </a></li>-->
-    <#--</ul>-->
-    <#--</div>-->
     </div>
 </section>
-<#--<div id="page-content-wrapper">-->
-<#--<div class="container-fluid">-->
-<#--<div class="row" style="padding-top: 20px">-->
-<#--<div class="col-lg-12">-->
-<#--<form name="allData" method="post" action="sendNewPoint">-->
-<#--<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">-->
-<#--<div class="row step" style="padding-top: 20px">-->
-<#--<div class="row step" style="padding-top: 20px">-->
 
-<#--<div class="step_in collapse" id="file_line">-->
-<#--<div class="input-group">-->
-<#--<span class="input-group-btn">-->
-<#--<span class="btn btn-primary btn-file">-->
-<#--Browse&hellip; <input type="file" multiple>-->
-<#--</span>-->
-<#--</span>-->
-<#--<input type="text" class="form-control" readonly>-->
-<#--</div>-->
-<#--</div>-->
-<#--</div>-->
-<#--<div class="row step" style="padding-top: 20px">-->
-
-<#--<div id="params_line" class="step_in collapse">-->
-<#--Здесь параметры-->
-<#--</div>-->
-<#--</div>-->
-<#--<div class="row step" style="padding-top: 20px">-->
-
-<#--<div id="money_line" class="step_in collapse">-->
-<#--Способы оплаты-->
-<#--</div>-->
-<#--</div>-->
-<#--<div class="row step" style="padding-top: 20px">-->
-
-<#--<div id="get_line" class="step_in collapse">-->
-<#--ПОлучить код заказа и проверить статус.-->
-<#--</div>-->
-<#--</div>-->
-<#--</div>-->
-<#--</form>-->
-<#--</div>-->
-<#--</div>-->
-<#--</div>-->
-<#--</div>-->
 <div class="portfolio-modal modal fade" id="step1" tabindex="-1" role="dialog" aria-hidden="true"
      style="display: none;">
     <div class="modal-content">
@@ -213,7 +128,6 @@
                     <div class="modal-body">
                         <h2 class="text-modal-body">Выберите точку печати</h2>
                         <hr class="star-primary">
-                    <#--<img src="resources/img/submarine.png" class="img-responsive img-centered" alt="">-->
                         <div id="map" class="step-map"></div>
                         <ul style="font-size: 16px">
                             <li>Выберите подходящую точку</li>
@@ -222,6 +136,61 @@
                         </ul>
                         <button type="button" class="btn btn-success" data-dismiss="modal">Подтвердить</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="step2" tabindex="-1" role="dialog" aria-hidden="true"
+     style="display: none;">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <h2 class="text-modal-body">Загрузите файл</h2>
+                        <hr class="star-primary">
+                        <input type="file" title="Search for a file to add">
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Подтвердить</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="portfolio-modal modal fade" id="step3" tabindex="-1" role="dialog" aria-hidden="true"
+     style="display: none;">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body centered">
+                        <h2 class="text-modal-body">Оплатите заказ</h2>
+                        <hr class="star-primary">
+                        <iframe frameborder="0" allowtransparency="true" scrolling="no"
+                                src="https://money.yandex.ru/embed/shop.xml?account=410013301112923&quickpay=shop&payment-type-choice=on&writer=seller&targets=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0+%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8%2C+%D0%BF%D1%80%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%D0%B0%D1%8F+%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%BE%D0%BC+PRINT4ALL.&targets-hint=&default-sum=&button-text=01&fio=on&mail=on&successURL="
+                                width="100%" height="213" style="padding-left: 130px;"></iframe>
+                        <div class="row">
+                            <div class="col-lg-2 col-lg-offset-10">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
