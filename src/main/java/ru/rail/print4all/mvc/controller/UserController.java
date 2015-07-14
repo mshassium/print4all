@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.rail.print4all.mvc.model.OrganisationsEntity;
 import ru.rail.print4all.mvc.model.PointEntity;
@@ -62,6 +63,15 @@ public class UserController {
     public @ResponseBody List<PointEntity> getAllMapData(Model model){
         List<PointEntity> allCoordinates = pointActions.getAllCoordinates();
         return allCoordinates;
+    }
+
+    @RequestMapping(value = "/sendTestData", method = RequestMethod.GET)
+    public String sendTestData(@RequestParam("id") int id,
+                               @RequestParam("config") int config,
+                               @RequestParam("patch") String patch,
+                               @RequestParam("countPage") int countPage,
+                               @RequestParam("payCheck") boolean payCHeck) {
+        return "index";
     }
 
 }

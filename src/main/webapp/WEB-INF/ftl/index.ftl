@@ -16,7 +16,8 @@
     <script src="resources/js/jquery-1.11.3.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/mainJs.js"></script>
-    <script src="https://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"
+    <
+    <script src="http://api-maps.yandex.ru/2.0/?load=package.standard,package.clusters&lang=ru-RU"
             type="text/javascript"></script>
 </head>
 <body>
@@ -110,6 +111,7 @@
             </div>
         </div>
     </div>
+    <button class="btn btn-success" onclick="sendTestData()">Отправить данные</button>
 </section>
 
 <div class="portfolio-modal modal fade" id="step1" tabindex="-1" role="dialog" aria-hidden="true"
@@ -158,8 +160,10 @@
                     <div class="modal-body">
                         <h2 class="text-modal-body">Загрузите файл</h2>
                         <hr class="star-primary">
-                        <input type="file" title="Search for a file to add">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Подтвердить</button>
+                        <input id="documentId" type="file" title="Search for a file to add">
+                        <button type="button" class="btn btn-success" onclick="setPatch()" data-dismiss="modal">
+                            Подтвердить
+                        </button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
