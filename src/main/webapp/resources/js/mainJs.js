@@ -8,16 +8,14 @@ var idConfig;
 var idPatch;
 var countPage;
 var payCheck;
+
 function sendTestData() {
     var data = {"id": idPoint, "config": 0, "patch": idPatch, "countPage": 10, "payCheck": true};
     $.ajax({
         url: "/sendTestData",
         method: "get",
         dataType: 'json',
-        data: data,
-        success: function (data) {
-            console.log("Data: " + data);
-        }
+        data: data
     })
     ;
 }
@@ -50,35 +48,30 @@ function init(data) {
             center: [51.531579, 46.007785],
             zoom: 13
         });
-        for(var i =0;i<data.length;i++) {
+        for (var i = 0; i < data.length; i++) {
             var splitIn = data[i].coordinates.split(" ").map(Number);
-            console.log("Координаты: "+splitIn);
-            myPlacemark = new ymaps.Placemark(splitIn,{id:data[i].idPoint,balloonContent:data[i].address});
-            //myMap.geoObjects.add(myPlacemark);
+            console.log("Координаты: " + splitIn);
+            myPlacemark = new ymaps.Placemark(splitIn, {id: data[i].idPoint, balloonContent: data[i].address});
             // Создание экземпляра элемента управления
             myPlacemark.events
-                .add('click',function(e){
+                .add('click', function (e) {
                     e.get('target').options.set('preset');
                     e.get('target').options.set('preset', 'twirl#redIcon');
                     var target = e.get('target');
-                    idPoint= target.properties._K.id;
+                    idPoint = target.properties._K.id;
                     console.log(idPoint);
                 });
-            myGeoObjects[i] = myPlacemark;
+
+            myMap.geoObjects.add(myPlacemark);
         }
-        myClusterer = new ymaps.Clusterer();
-        myClusterer.add(myGeoObjects);
-        myMap.geoObjects.add(myClusterer);
-        myMap.controls.add(
-            new ymaps.control.ZoomControl()
-        );
+        myMap.controls.add(new ymaps.control.ZoomControl());
     }
 }
-$('form[name=allData]').submit(function(){
+$('form[name=allData]').submit(function () {
 
     // Maybe show a loading indicator...
 
-    $.post($(this).attr('action'), $(this).serialize(), function(res){
+    $.post($(this).attr('action'), $(this).serialize(), function (res) {
         // Do something with the response `res`
         console.log(res);
         // Don't forget to hide the loading indicator!

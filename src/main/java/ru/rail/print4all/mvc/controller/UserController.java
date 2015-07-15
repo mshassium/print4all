@@ -18,6 +18,7 @@ import ru.rail.print4all.services.PointActions;
 import ru.rail.print4all.services.ServiceActions;
 import ru.rail.print4all.services.UserActions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -61,7 +62,8 @@ public class UserController {
 
     @RequestMapping(value = "getAllMapData", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE,headers="Accept=application/json, text/javascript")
     public @ResponseBody List<PointEntity> getAllMapData(Model model){
-        List<PointEntity> allCoordinates = pointActions.getAllCoordinates();
+//        List<PointEntity> allCoordinates = pointActions.getAllCoordinates();
+        List<PointEntity> allCoordinates = new ArrayList<PointEntity>();
         return allCoordinates;
     }
 

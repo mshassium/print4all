@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <title>PRINT4ALL</title>
     <meta charset="utf-8">
@@ -12,13 +12,38 @@
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
           type="text/css">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
     <!-- Scripts -->
     <script src="resources/js/jquery-1.11.3.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
     <script src="resources/js/mainJs.js"></script>
-    <
     <script src="http://api-maps.yandex.ru/2.0/?load=package.standard,package.clusters&lang=ru-RU"
             type="text/javascript"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+
+    <script>
+//        function () {
+//            var toggleColor = document.getElementById("toggle_setting_color");
+//            var example_img = document.getElementById("example_img");
+//            var enabled = toggleColor.value;
+//            if(enabled == "off"){
+//                example_img.setAttribute("src","resources/img/black_image.jpeg");
+//                $('#toggle_setting_color').bootstrapToggle('off')
+//            }
+//        };
+        $(function setExampleImage() {
+            var example_img = document.getElementById("example_img");
+            $('#toggle_setting_color').change(function() {
+                var prop = $(this).prop('checked');
+                if(!prop){
+                    example_img.setAttribute("src","resources/img/black_image.jpeg");
+                }
+                else{
+                    example_img.setAttribute("src","resources/img/color_image.jpg")
+                }
+            })
+        })
+    </script>
 </head>
 <body>
 <!-- Navigation -->
@@ -126,7 +151,7 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-8  model-line">
                     <div class="modal-body">
                         <h2 class="text-modal-body">Выберите точку печати</h2>
                         <hr class="star-primary">
@@ -138,6 +163,24 @@
                         </ul>
                         <button type="button" class="btn btn-success" data-dismiss="modal">Подтвердить</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="modal-body">
+                        <h2 class="text-modal-body">Цвет</h2>
+                        <hr class="star-primary">
+                        <h5>Если в выбранной точке нет возможности цветной печати,</br> то автоматически будет выбрана
+                            Черно-белая.</h5>
+
+                        <div id="color_setting">
+                            <input onchange="setExampleImage()" type="checkbox" checked data-toggle="toggle"
+                                   data-onstyle="warning"
+                                   data-off="Черно-белая" data-on="Цветная" id="toggle_setting_color">
+                        </div>
+                        </br>
+                        <div id="image_setting">
+                            <img src="resources/img/color_image.jpg" id="example_img">
+                        </div>
                     </div>
                 </div>
             </div>
