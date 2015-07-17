@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import ru.rail.print4all.mvc.model.OrganisationsEntity;
 import ru.rail.print4all.mvc.model.PointEntity;
 import ru.rail.print4all.mvc.model.ServiceEntity;
@@ -18,6 +19,9 @@ import ru.rail.print4all.services.PointActions;
 import ru.rail.print4all.services.ServiceActions;
 import ru.rail.print4all.services.UserActions;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,4 +80,22 @@ public class UserController {
         return "index";
     }
 
+    @RequestMapping(value="/uploadFile", method=RequestMethod.POST)
+    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file){
+        String name = file.getName();
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+                BufferedOutputStream stream =
+                        new BufferedOutputStream(new FileOutputStream(new File("./test.txt")));
+                stream.write(bytes);
+                stream.close();
+                return "You successfully uploaded " + name + "!";
+            } catch (Exception e) {
+                return "You failed to upload " + name + " => " + e.getMessage();
+            }
+        } else {
+            return "You failed to upload " + name + " because the file was empty.";
+        }
+    }
 }

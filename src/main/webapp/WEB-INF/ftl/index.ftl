@@ -161,9 +161,11 @@
             </div>
 
             <button type="button" onclick="submitMapData()" class="btn btn-success"
-                    data-dismiss="modal">Подтвердить</button>
-            <button type="button"  onclick="cancelMapData()" class="btn btn-danger"
-                    data-dismiss="modal">Закрыть</button>
+                    data-dismiss="modal">Подтвердить
+            </button>
+            <button type="button" onclick="cancelMapData()" class="btn btn-danger"
+                    data-dismiss="modal">Закрыть
+            </button>
         </div>
     </div>
 </div>
@@ -183,7 +185,12 @@
                     <div class="modal-body">
                         <h2 class="text-modal-body">Загрузите файл</h2>
                         <hr class="star-primary">
-                        <input id="documentId" type="file" title="Search for a file to add">
+                        <form method="POST" enctype="multipart/form-data"
+                              action="/uploadFile">
+                            <input type="file" accept="text/*" name="file"></br>
+                            <input type="submit" class="btn btn-danger" value="Загрузить файл"> Press here to upload
+                            the file!
+                        </form>
                         <button type="button" class="btn btn-success" onclick="setPatch()" data-dismiss="modal">
                             Подтвердить
                         </button>
