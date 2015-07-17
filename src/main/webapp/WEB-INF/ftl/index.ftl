@@ -16,34 +16,11 @@
     <!-- Scripts -->
     <script src="resources/js/jquery-1.11.3.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/mainJs.js"></script>
+    <script src="resources/js/file_controller.js"></script>
+    <script src="resources/js/map_controller.js"></script>
     <script src="http://api-maps.yandex.ru/2.0/?load=package.standard,package.clusters&lang=ru-RU"
             type="text/javascript"></script>
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
-
-    <script>
-//        function () {
-//            var toggleColor = document.getElementById("toggle_setting_color");
-//            var example_img = document.getElementById("example_img");
-//            var enabled = toggleColor.value;
-//            if(enabled == "off"){
-//                example_img.setAttribute("src","resources/img/black_image.jpeg");
-//                $('#toggle_setting_color').bootstrapToggle('off')
-//            }
-//        };
-        $(function setExampleImage() {
-            var example_img = document.getElementById("example_img");
-            $('#toggle_setting_color').change(function() {
-                var prop = $(this).prop('checked');
-                if(!prop){
-                    example_img.setAttribute("src","resources/img/black_image.jpeg");
-                }
-                else{
-                    example_img.setAttribute("src","resources/img/color_image.jpg")
-                }
-            })
-        })
-    </script>
 </head>
 <body>
 <!-- Navigation -->
@@ -99,7 +76,7 @@
                             <span class="glyphicon glyphicon-map-marker"> Выбери точку печати</span>
                         </div>
                     </div>
-                    <img src="resources/img/map.png" class="step-img img-responsive" alt>
+                    <img src="resources/img/map.png" id="step1_image" class="step-img img-responsive" alt>
                 </a>
             </div>
             <div class="col-sm-4 step-item">
@@ -161,8 +138,6 @@
                             <li>Щелкните на соответствующем маркере</li>
                             <li>Нажмите кнопку Подтвердить</li>
                         </ul>
-                        <button type="button" class="btn btn-success" data-dismiss="modal">Подтвердить</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -184,6 +159,11 @@
                     </div>
                 </div>
             </div>
+
+            <button type="button" onclick="submitMapData()" class="btn btn-success"
+                    data-dismiss="modal">Подтвердить</button>
+            <button type="button"  onclick="cancelMapData()" class="btn btn-danger"
+                    data-dismiss="modal">Закрыть</button>
         </div>
     </div>
 </div>
