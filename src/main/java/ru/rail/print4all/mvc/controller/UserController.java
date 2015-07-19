@@ -18,10 +18,10 @@ import ru.rail.print4all.services.OrganisationActions;
 import ru.rail.print4all.services.PointActions;
 import ru.rail.print4all.services.ServiceActions;
 import ru.rail.print4all.services.UserActions;
+import ru.rail.print4all.utils.files.SaveFileFS;
+import ru.rail.print4all.utils.files.wrap.SimpleFileWrap;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +42,8 @@ public class UserController {
 
     @Autowired
     PointActions pointActions;
+
+    private SaveFileFS fileFS;
 
     @RequestMapping("/")
     public String indexPage(Model model) {
@@ -81,21 +83,23 @@ public class UserController {
     }
 
     @RequestMapping(value="/uploadFile", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file){
-        String name = file.getName();
-        if (!file.isEmpty()) {
-            try {
-                byte[] bytes = file.getBytes();
-                BufferedOutputStream stream =
-                        new BufferedOutputStream(new FileOutputStream(new File("./test.txt")));
-                stream.write(bytes);
-                stream.close();
-                return "You successfully uploaded " + name + "!";
-            } catch (Exception e) {
-                return "You failed to upload " + name + " => " + e.getMessage();
+    public String handleFileUpload(@RequestParam("file") MultipartFile file){
+        try {
+            byte[] bytes = file.getBytes();
+            String contentType = file.getContentType();
+            String originalFilename = file.getOriginalFilename();
+            SimpleFileWrap wrap = new SimpleFileWrap(file,originalFilename,contentType,bytes);
+            fileFS = new SaveFileFS(wrap);
+            boolean save = fileFS.saveFile();
+            if(save){
+                return "index";
             }
-        } else {
-            return "You failed to upload " + name + " because the file was empty.";
+            else {
+                return "404_page";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return "index";
     }
 }
