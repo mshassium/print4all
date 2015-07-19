@@ -25,3 +25,50 @@ function setPatch(patch) {
     idPatch = name;
 }
 
+//function uploadFile() {
+//    var elementsByName = document.getElementsByName("file");
+//    var file = elementsByName[0].files[0];
+//    $.ajax({
+//        url: "/uploadFile",
+//        method: "post",
+//        data: file,
+//        contentType:"multipart/form-data",
+//        success: function () {
+//            alert("1")
+//        },
+//        error: function () {
+//            alert("2")
+//        }
+//    });
+//}
+
+$(document).ready(function () {
+    $("#sendFile").submit(function (event) {
+        var form = document.getElementById("sendFile");
+        var formData = new FormData(form);
+        $.ajax({
+            url: '/uploadFile',
+            type: 'POST',
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            charset: "utf-8",
+            success: function () {
+                var elementById = document.getElementById("error_upload");
+                elementById.hidden = true;
+                var elementById = document.getElementById("success_upload");
+                elementById.hidden = null;
+            },
+            error: function () {
+                var elementById = document.getElementById("success_upload");
+                elementById.hidden = true;
+                var elementById = document.getElementById("error_upload");
+                elementById.hidden = null;
+            }
+        });
+
+        return false;
+    });
+});

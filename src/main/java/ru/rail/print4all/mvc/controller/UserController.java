@@ -82,7 +82,7 @@ public class UserController {
         return "index";
     }
 
-    @RequestMapping(value="/uploadFile", method=RequestMethod.POST)
+    @RequestMapping(value="/uploadFile", method=RequestMethod.POST, headers = "content-type=multipart/*")
     public String handleFileUpload(@RequestParam("file") MultipartFile file){
         try {
             byte[] bytes = file.getBytes();

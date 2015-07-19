@@ -185,16 +185,26 @@
                     <div class="modal-body">
                         <h2 class="text-modal-body">Загрузите файл</h2>
                         <hr class="star-primary">
-                        <form method="POST" enctype="multipart/form-data"
-                              action="/uploadFile">
-                            <input type="file" accept="text/*" name="file"></br>
-                            <input type="submit" class="btn btn-danger" value="Загрузить файл"> Press here to upload
-                            the file!
+                        <form name="sendFile" id="sendFile" action="javascript:;"
+                              enctype="multipart/form-data" method="post" accept-charset="utf-8">
+                            <div class="alert alert-success" id="success_upload" role="alert" hidden>
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Success:</span>
+                                Файл успешно загружен
+                            </div>
+                            <div class="alert alert-danger" id="error_upload" role="alert" hidden>
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span class="sr-only">Error:</span>
+                                Файл не загрузился
+                            </div>
+                            <input type="file" accept="text/*,application/*" name="file"></br>
+                            <input type="submit" class="btn btn-warning" value="Загрузить
+                            файл">
+                            <button type="button" class="btn btn-success" onclick="setPatch()" data-dismiss="modal">
+                                Подтвердить
+                            </button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
                         </form>
-                        <button type="button" class="btn btn-success" onclick="setPatch()" data-dismiss="modal">
-                            Подтвердить
-                        </button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
                     </div>
                 </div>
             </div>

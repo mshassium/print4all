@@ -27,11 +27,11 @@ public class SaveFileFS {
         checkExistFile();
         String contentType = file.getContentType();
         switch (contentType) {
-            case ContetntType.TXT:
+            case ContentType.TXT:
                 return saveTXTFile();
-            case ContetntType.PDF:
+            case ContentType.PDF:
                 return savePDFFile();
-            case ContetntType.WORD:
+            case ContentType.WORD:
                 return savePDFFile();
             default:
                 return savePDFFile();
@@ -41,9 +41,7 @@ public class SaveFileFS {
     private boolean savePDFFile() {
         MultipartFile multipartFile = file.getMultipartFile();
         try(FileInputStream fis = (FileInputStream) multipartFile.getInputStream()) {
-            Path pathFile = this.file.getPathFile();
-            Files.deleteIfExists(pathFile);
-            Path filePath = Files.createFile(pathFile);
+            Path filePath = validateRemoveAndCreateNewFile();
             FileOutputStream fos =new FileOutputStream(filePath.toFile());
             byte[] buffer = new byte[4096];
             int read;
@@ -60,7 +58,7 @@ public class SaveFileFS {
 
     private boolean saveTXTFile() {
         try {
-            Path filePath = Files.createFile(this.file.getPathFile());
+            Path filePath = validateRemoveAndCreateNewFile();
             byte[] bytesFile = file.getBytes();
             try (BufferedWriter writer = Files.newBufferedWriter(filePath, StandardCharsets.UTF_8, StandardOpenOption
                     .WRITE)) {
@@ -75,6 +73,12 @@ public class SaveFileFS {
             e.printStackTrace();
         }
         return false;
+    }
+
+    private Path validateRemoveAndCreateNewFile() throws IOException {
+        Path pathFile = this.file.getPathFile();
+        Files.deleteIfExists(pathFile);
+        return Files.createFile(pathFile);
     }
 
     private void checkExistFile() {
