@@ -1,17 +1,21 @@
 package ru.rail.print4all.utils.files.wrap;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.Serializable;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
  * User: rakh1213
  */
-public class SimpleFileWrap {
+public class SimpleFileWrap implements Serializable {
 
-    private Path pathFile = Paths.get(System.getProperty("user.home"));
+    @JsonIgnore
+    private Path pathFile;
+    private String fullPathToString;
     private int size;
     private int countPage;
     private String ext;
@@ -19,11 +23,12 @@ public class SimpleFileWrap {
     private boolean use;
     private byte[] bytes;
     private String contentType;
+    @JsonIgnore
     private MultipartFile multipartFile;
 
     public SimpleFileWrap(MultipartFile multipartFile, String pathFile, String contentType, byte[] bytes) {
         getNewPath(pathFile);
-        this.bytes= bytes;
+        this.bytes = bytes;
         this.contentType = contentType;
         this.multipartFile = multipartFile;
     }
@@ -31,12 +36,13 @@ public class SimpleFileWrap {
     public SimpleFileWrap(String pathFile, int idOrder, byte[] bytes) {
         getNewPath(pathFile);
         this.idOrder = idOrder;
-        this.bytes= bytes;
+        this.bytes = bytes;
     }
 
     private void getNewPath(String pathFile) {
-        String newPatchString = this.pathFile.toString() + File.separator + pathFile;
+        String newPatchString = Paths.get(System.getProperty("user.home")) + File.separator + pathFile;
         this.pathFile = Paths.get(newPatchString);
+        fullPathToString = this.pathFile.toString();
     }
 
     public byte[] getBytes() {
@@ -109,5 +115,13 @@ public class SimpleFileWrap {
 
     public void setMultipartFile(MultipartFile multipartFile) {
         this.multipartFile = multipartFile;
+    }
+
+    public String getFullPathToString() {
+        return fullPathToString;
+    }
+
+    public void setFullPathToString(String fullPathToString) {
+        this.fullPathToString = fullPathToString;
     }
 }

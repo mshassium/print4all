@@ -5,43 +5,42 @@ var idConfig;
 var idPatch;
 var countPage;
 var payCheck;
+function validateAllData() {
+    return !!(idPoint != null && mapConfigChecked && colorConfig != null && idPatch != null && countPage != null && payCheck);
 
+}
 function sendTestData() {
-    var data = {"id": idPoint, "config": 0, "patch": idPatch, "countPage": 10, "payCheck": true};
-    $.ajax({
-        url: "/sendTestData",
-        method: "get",
-        dataType: 'json',
-        data: data
-    })
-    ;
+    var checkData = validateAllData();
+    if (checkData) {
+        var data = {"id": idPoint, "config": idConfig, "patch": idPatch, "countPage": countPage, "payCheck": payCheck};
+        $.ajax({
+            url: "/sendTestData",
+            method: "get",
+            dataType: 'json',
+            data: data,
+            success:function(){
+                alert("Data send.")
+            },
+            error:function(){
+                alert("PIZDEC!!!! :)")
+            }
+        })
+        ;
+    }
+    else {
+        var elementById = document.getElementById("success_upload");
+        elementById.hidden = true;
+        var elementById = document.getElementById("error_upload");
+        elementById.hidden = null;
+    }
 }
 
-function setPatch(patch) {
-    var elementById = document.getElementById("documentId");
-    var listFiles = elementById.files;
-    var listFile = listFiles[0];
-    var name = listFile.name;
-    idPatch = name;
+function setPatch() {
+    var step2_img = document.getElementById("step2_image");
+    step2_img.setAttribute("src", "resources/img/success.png");
 }
 
-//function uploadFile() {
-//    var elementsByName = document.getElementsByName("file");
-//    var file = elementsByName[0].files[0];
-//    $.ajax({
-//        url: "/uploadFile",
-//        method: "post",
-//        data: file,
-//        contentType:"multipart/form-data",
-//        success: function () {
-//            alert("1")
-//        },
-//        error: function () {
-//            alert("2")
-//        }
-//    });
-//}
-
+//Загрузка дыннах на сервер
 $(document).ready(function () {
     $("#sendFile").submit(function (event) {
         var form = document.getElementById("sendFile");
@@ -55,13 +54,15 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
             charset: "utf-8",
-            success: function () {
+            success: function (response) {
                 var elementById = document.getElementById("error_upload");
                 elementById.hidden = true;
                 var elementById = document.getElementById("success_upload");
                 elementById.hidden = null;
+                idPatch = response.fullPathToString;
+                countPage = response.countPage
             },
-            error: function () {
+            error: function (response) {
                 var elementById = document.getElementById("success_upload");
                 elementById.hidden = true;
                 var elementById = document.getElementById("error_upload");

@@ -93,7 +93,7 @@
                             <span class="glyphicon glyphicon-download-alt"> Загрузи документ</span>
                         </div>
                     </div>
-                    <img src="resources/img/document.png" class="step-img img-responsive" alt>
+                    <img src="resources/img/document.png" id="step2_image" class="step-img img-responsive" alt>
                 </a>
             </div>
             <div class="col-sm-4 step-item text-center">
@@ -113,7 +113,12 @@
             </div>
         </div>
     </div>
-    <button class="btn btn-success" onclick="sendTestData()">Отправить данные</button>
+    <div class="alert alert-danger" id="error_upload" role="alert" hidden>
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Ошибка. Не хватает данных. Пожалуйста, повторите все шаги заново.
+    </div>
+    <button class="btn btn-success" onclick="sendTestData()">Отправить на печать</button>
 </section>
 
 <div class="portfolio-modal modal fade" id="step1" tabindex="-1" role="dialog" aria-hidden="true"
@@ -230,6 +235,23 @@
                         <iframe frameborder="0" allowtransparency="true" scrolling="no"
                                 src="https://money.yandex.ru/embed/shop.xml?account=410013301112923&quickpay=shop&payment-type-choice=on&writer=seller&targets=%D0%9E%D0%BF%D0%BB%D0%B0%D1%82%D0%B0+%D1%83%D1%81%D0%BB%D1%83%D0%B3%D0%B8%2C+%D0%BF%D1%80%D0%B5%D0%B4%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D1%8F%D0%B5%D0%BC%D0%B0%D1%8F+%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D0%BE%D0%BC+PRINT4ALL.&targets-hint=&default-sum=&button-text=01&fio=on&mail=on&successURL="
                                 width="100%" height="213" style="padding-left: 130px;"></iframe>
+                        <form method="POST" action="https://money.yandex.ru/quickpay/confirm.xml">
+                            <input type="hidden" name="receiver" value="410013301112923">
+                            <input type="hidden" name="formcomment" value="PRINT4ALL: оплата печати">
+                            <input type="hidden" name="short-dest" value=" PRINT4ALL: оплата печати">
+                            <input type="hidden" name="label" value="test_label">
+                            <input type="hidden" name="quickpay-form" value="shop">
+                            <input type="hidden" name="targets" value="оплата печати документов">
+                            <input type="hidden" name="sum" value="20" data-type="number" >
+                            <input type="hidden" name="comment" value="Хотелось бы параллельной флюкабельности." >
+                            <input type="hidden" name="need-fio" value="true">
+                            <input type="hidden" name="need-email" value="true" >
+                            <input type="hidden" name="need-phone" value="true">
+                            <input type="hidden" name="need-address" value="false">
+                            <input type="radio" name="paymentType" value="PC">Яндекс.Деньгами</input>
+                            <input type="radio" name="paymentType" value="AC">Банковской картой</input>
+                            <input type="submit" name="submit-button" value="Перевести">
+                        </form>
                         <div class="row">
                             <div class="col-lg-2 col-lg-offset-10">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>

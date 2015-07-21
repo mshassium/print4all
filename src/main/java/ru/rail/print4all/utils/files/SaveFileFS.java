@@ -1,5 +1,6 @@
 package ru.rail.print4all.utils.files;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
 import org.springframework.web.multipart.MultipartFile;
 import ru.rail.print4all.utils.files.wrap.SimpleFileWrap;
 
@@ -29,8 +30,10 @@ public class SaveFileFS {
         switch (contentType) {
             case ContentType.TXT:
                 return saveTXTFile();
-            case ContentType.PDF:
+            case ContentType.PDF: {
+                setCountPDFPage();
                 return savePDFFile();
+            }
             case ContentType.WORD:
                 return savePDFFile();
             default:
@@ -38,18 +41,30 @@ public class SaveFileFS {
         }
     }
 
+    private void setCountPDFPage() {
+        int numberOfPages = 0;
+        PDDocument document = null;
+        try {
+            document = PDDocument.load(file.getBytes());
+            numberOfPages = document.getNumberOfPages();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        file.setCountPage(numberOfPages);
+    }
+
     private boolean savePDFFile() {
         MultipartFile multipartFile = file.getMultipartFile();
-        try(FileInputStream fis = (FileInputStream) multipartFile.getInputStream()) {
+        try (FileInputStream fis = (FileInputStream) multipartFile.getInputStream()) {
             Path filePath = validateRemoveAndCreateNewFile();
-            FileOutputStream fos =new FileOutputStream(filePath.toFile());
+            FileOutputStream fos = new FileOutputStream(filePath.toFile());
             byte[] buffer = new byte[4096];
             int read;
             while ((read = fis.read(buffer)) != -1) {
                 fos.write(buffer, 0, read);
             }
             fos.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,7 +98,7 @@ public class SaveFileFS {
 
     private void checkExistFile() {
         if (file == null || file.getPathFile() == null) {
-            throw new RuntimeException("Путь до файла пустой");
+            throw new RuntimeException("пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
         }
     }
 

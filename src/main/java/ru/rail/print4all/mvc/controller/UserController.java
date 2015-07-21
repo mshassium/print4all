@@ -1,5 +1,6 @@
 package ru.rail.print4all.mvc.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,8 +83,9 @@ public class UserController {
         return "index";
     }
 
+    @JsonIgnore
     @RequestMapping(value="/uploadFile", method=RequestMethod.POST, headers = "content-type=multipart/*")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file){
+    public @ResponseBody SimpleFileWrap handleFileUpload(@RequestParam("file") MultipartFile file){
         try {
             byte[] bytes = file.getBytes();
             String contentType = file.getContentType();
@@ -91,15 +93,16 @@ public class UserController {
             SimpleFileWrap wrap = new SimpleFileWrap(file,originalFilename,contentType,bytes);
             fileFS = new SaveFileFS(wrap);
             boolean save = fileFS.saveFile();
+            SimpleFileWrap resultWrap = fileFS.getFile();
             if(save){
-                return "index";
+                return resultWrap;
             }
             else {
-                return "404_page";
+                return null;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "index";
+        return null;
     }
 }
